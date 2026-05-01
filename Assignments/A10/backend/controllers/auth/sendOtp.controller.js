@@ -22,7 +22,10 @@ export const sendOtp = asyncHandler(async (req, res, next) => {
   await OTP.deleteMany({ email: email.toLowerCase() });
   await OTP.create({ email: email.toLowerCase(), otp });
 
-  await sendOtpEmail(email, otp);
+  // Try to send email but don't block if it fails
+  sendOtpEmail(email, otp).catch(err => {
+    console.error('Failed to send OTP email:', err.message);
+  });
 
   res.status(200).json({
     success: true,

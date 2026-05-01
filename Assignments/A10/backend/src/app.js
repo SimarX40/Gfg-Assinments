@@ -12,7 +12,7 @@ const app = express();
 
 // Middleware
 const allowedOrigins = process.env.NODE_ENV === 'production'
-  ? [process.env.CLIENT_URL]
+  ? [process.env.CLIENT_URL, 'https://gfg.simar.dev']
   : ['http://localhost:5173', 'http://localhost:3000', process.env.CLIENT_URL];
 
 app.use(

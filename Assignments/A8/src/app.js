@@ -35,9 +35,9 @@ app.get("/api/health", (req, res) => {
 
 // ==========================================
 // 404 HANDLER
-// Catches any route that doesn't match above
+// Catches any API route that doesn't match above
 // ==========================================
-app.use((req, res) => {
+app.use("/api/*", (req, res) => {
   res.status(404).json({ success: false, message: `Route ${req.url} not found` });
 });
 

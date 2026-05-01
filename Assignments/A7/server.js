@@ -125,6 +125,18 @@ const server = http.createServer((req, res) => {
 
 server.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
+  console.log(`Public folder path: ${PUBLIC}`);
+  console.log(`__dirname: ${__dirname}`);
   console.log("Logging requests to requests.log");
   console.log("Press Ctrl+C to stop\n");
+
+  // Check if public folder exists
+  fs.readdir(PUBLIC, (err, files) => {
+    if (err) {
+      console.error("ERROR: Public folder not found!", err);
+    } else {
+      console.log("Public folder contents:", files);
+    }
+  });
+  
 });
